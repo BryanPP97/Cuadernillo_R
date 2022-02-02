@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "Dara transformation"
 output: html_notebook
 ---
 
@@ -12,8 +12,8 @@ library(nycflights13)
 flights
 ```
 
-# Ejercicios utilizando la base de datos nycflights13
-#### 1.- Mostrar los vuelos que tuvieron un retraso en la llegada (arr_delay), de 2 o más horas
+# Ejercicios utilizando la base de datos `nycflights13`
+#### 1.- Mostrar los vuelos que tuvieron un retraso en la llegada `(arr_delay)`, de 2 o más horas
 ```{r}
 filter(flights, arr_delay >= 2)
 ```
@@ -23,7 +23,7 @@ filter(flights, arr_delay >= 2)
 ```{r}
 filter(flights, dest == "IAH" | dest == "HOU" )
 ```
-#### También podemos ocupar %in% para compactarlo
+#### También podemos ocupar `%in%` para compactarlo
 ```{r}
 filter(flights, dest %in% c("IAH", "HOU"))
 ```
@@ -32,7 +32,7 @@ filter(flights, dest %in% c("IAH", "HOU"))
 
 <br>
 
-#### 3.- Los que fueron operados por United, American o Delta. Utiliza el set de datos airlines para identificar las siglas correspondientes al carrier.
+#### 3.- Los que fueron operados por United, American o Delta. Utiliza el set de datos `airlines` para identificar las siglas correspondientes al carrier.
 ```{r}
 filter(flights, carrier %in% c("DL", "AA", "UA"))
 ```
@@ -54,4 +54,3 @@ filter(flights, arr_time > 120, dep_delay <= 0)
 ```{r}
 filter(flights, dep_delay >=60, dep_delay - arr_delay > 30)
 ```
-
