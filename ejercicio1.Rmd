@@ -1,0 +1,118 @@
+---
+title: "Ejercicios Tidyverse"
+output: html_notebook
+---
+# *1.- De la librería mpg, identifique  aquellas varibales categóricas y  aquellas que son continuas*
+
+#### Existen dos formas de visualizar el tipo de variable que se tiene
+
+#### La primer es llamando a la base, esta nos describe la forma en la que está acomodado nuestro df e indica el tipo de variable
+```{r}
+mpg
+```
+#### La función "glimpse(mpg)" es otra función que muestra el tipo de variable
+```{r}
+glimpse(mpg)
+```
+<br>
+
+# 2.- Grafica una variable continua con el argumento color, size y shape
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, colour = cty)) +
+  geom_point()
+```
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, size = cty)) +
+  geom_point()
+```
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, shape = cty)) +
+  geom_point()
+```
+# 3.- ¿Qué pasa si graficas una varibale puntual que no esté dentro de tus variables? , como aes(color= displ < 5)
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, colour = displ < 5)) +
+  geom_point()
+```
+<br>
+
+# 4.- ¿Qué pasa si aplicas un facet_grid a una varibale continua?
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  facet_grid(. ~ cty)
+```
+#### La variable continua se convierte en una variable categórica y la gráfica representa una faceta para cada valor.
+
+<br>
+
+# 5.- ¿Qué realiza el "." en las siguientes gráficas?
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+#### El "." ignora la dimención cuando graficas en varias facetas. Por ejemplo, "drv ~ ." crea la faceta para los valores de ´drv´ en el eje y.
+
+#### Mientras que en ". ~ cyl" se muestran los valores de cyl en el eje x
+
+<br>
+
+# 6.-¿Qué hace la función "show.legend = FALSE"?
+```{r}
+ggplot(data = mpg) +
+  geom_smooth(
+    mapping = aes(x = displ, y = hwy, colour = drv),
+    show.legend = FALSE
+  )
+```
+#### Este comando oculta la leyenda que especifica el argumento de cada línea. Quitando este comando o cambiarlo a "show.lengend = TRUE" creará las leyendas específicas para cada argumento.
+```{r}
+ggplot(data = mpg) +
+  geom_smooth(mapping = aes(x = displ, y = hwy, colour = drv))
+```
+# 7.-¿Qué hace "se" en el argumento "geom_smooth"?
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, colour = drv)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, colour = drv)) +
+  geom_point() +
+  geom_smooth(se = TRUE)
+```
+
+#### Agrega sombras de tendencia para cada línea
+
+
+# 8.-¿Estas dos gráficas se verán diferentes?
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+
+ggplot() +
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
+```
+#### No porque tanto geom_point como geom_smooth utilizarán los mismos valores, se puede dejar especificado detro del ggplot()
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+ggplot() +
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
+```
+
