@@ -1,0 +1,57 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+```{r}
+flights
+```
+
+# Ejercicios utilizando la base de datos nycflights13
+#### 1.- Mostrar los vuelos que tuvieron un retraso en la llegada (arr_delay), de 2 o más horas
+```{r}
+filter(flights, arr_delay >= 2)
+```
+<br>
+
+#### 2.- Los vuelos a Houston ( IAH o HOU)
+```{r}
+filter(flights, dest == "IAH" | dest == "HOU" )
+```
+#### También podemos ocupar %in% para compactarlo
+```{r}
+filter(flights, dest %in% c("IAH", "HOU"))
+```
+
+
+
+<br>
+
+#### 3.- Los que fueron operados por United, American o Delta. Utiliza el set de datos airlines para identificar las siglas correspondientes al carrier.
+```{r}
+filter(flights, carrier %in% c("DL", "AA", "UA"))
+```
+<br>
+
+#### 4.- Los que fueron en verano: Julio, Agosto y Septiembre
+```{r}
+filter(flights, month %in% c( 7:9))
+```
+<br>
+
+#### 5.- Los que arribaron con más de 2 horas de retraso pero que no se fueron tarde
+```{r}
+filter(flights, arr_time > 120, dep_delay <= 0)
+```
+<br>
+
+#### 6.- Los que tuvieron un retraso de una hora pero lo recuperaron con 30 minutos de vuelo
+```{r}
+filter(flights, dep_delay >=60, dep_delay - arr_delay > 30)
+```
+

@@ -1,0 +1,28 @@
+{
+    "id": "6DC88D4E",
+    "path": "~/R/Data transformation/data_transformation.Rmd",
+    "project_path": "data_transformation.Rmd",
+    "type": "r_markdown",
+    "hash": "1059445493",
+    "contents": "",
+    "dirty": false,
+    "created": 1643778907692.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "tempName": "Untitled1",
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "54,58",
+        "scrollLine": "54"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1643782735,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1643782735795,
+    "read_only": false,
+    "read_only_alternatives": []
+}
